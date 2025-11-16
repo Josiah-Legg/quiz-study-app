@@ -7,6 +7,6 @@ TERM
 MEANING_1, MEANING_2, MEANING_3, etc  
 [newline]  
 [newline]  
-TERM2  
+TERM_2  
 MEANING_1, etc  
 #### The terms.txt currently contains the OCR Latin vocabulary list.
