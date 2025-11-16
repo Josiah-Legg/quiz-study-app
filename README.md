@@ -9,4 +9,4 @@ MEANING_1, MEANING_2, MEANING_3, etc
 [newline]  
 TERM2  
 MEANING_1, etc  
-#### The terms.txt contains the OCR Latin vocabulary list.
+#### The terms.txt currently contains the OCR Latin vocabulary list.
