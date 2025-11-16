@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Congratulations — you have completed all the terms!</h2>
+  <p>You answered {{ correct_answers }}/{{ total_questions }} questions correctly ({{ percentage | round(1) }}% accuracy).</p>
+  <form method="get" action="{{ url_for('quiz') }}">
+    <button type="submit">Restart Quiz</button>
+  </form>
+{% endblock %}

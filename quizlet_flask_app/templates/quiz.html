@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="progress">Progress: {{ progress_done }}/{{ total_terms }} done ({{ remaining_count }} left)</div>
+
+  <div class="question-block" style="margin-bottom:0.5rem;">
+    <strong>What is '{{ current }}' in English?</strong>
+  </div>
+
+  <form id="quiz-form" method="post" action="{{ url_for('quiz') }}" style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+    <input type="hidden" name="state" value="{{ state_b64 }}">
+    <input id="answer" name="answer" type="text" style="flex: 1 1 400px; min-width: 400px; max-width: 400px;" autocomplete="off" />
+    <button id="submit-btn" type="submit">Submit</button><br><br><br>
+
+  </form>
+    <span id="feedback" aria-live="polite" style="max-width: 390px;"></span>
+
+  <p style="margin-top:0.75rem;">Answered {{ correct_answers }}/{{ total_questions }} correctly so far.</p>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const feedbackData = {{ feedback|tojson|default('null')|safe }};
+
+    const form = document.getElementById("quiz-form");
+    const answerInput = document.getElementById("answer");
+    const submitBtn = document.getElementById("submit-btn");
+    const feedbackSpan = document.getElementById("feedback");
+
+    function autoAdvanceAfter(ms) {
+      const adv = document.createElement("input");
+      adv.type = "hidden";
+      adv.name = "__advance";
+      adv.value = "1";
+      form.appendChild(adv);
+
+      answerInput.value = "";
+
+      setTimeout(() => {
+        form.submit();
+      }, ms);
+    }
+
+    if (feedbackData !== null) {
+      const [text, correct] = feedbackData;
+      feedbackSpan.textContent = text;
+      feedbackSpan.className = correct ? "feedback correct" : "feedback incorrect";
+
+      // disable while showing feedback
+      answerInput.disabled = true;
+      submitBtn.disabled = true;
+
+      const delay = correct ? 1000 : 3000;
+      autoAdvanceAfter(delay);
+    } else {
+      // no feedback: normal state -> focus input
+      answerInput.disabled = false;
+      submitBtn.disabled = false;
+      answerInput.focus();
+      feedbackSpan.textContent = "";
+      feedbackSpan.className = "";
+    }
+  });
+  </script>
+
+{% endblock %}

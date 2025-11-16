@@ -1,0 +1,153 @@
+:root {
+  --bg: #1b1b1b;
+  --fg: #b2b2b2;
+  --accent: #0084ff;
+  --muted: #868585;
+  --success: #0a8a3a;
+  --error: #d0342c;
+  --font-body: system-ui, -apple-system, Roboto, "Segoe UI", Arial, sans-serif;
+  --font-size-base: 20px;
+  --font-size-large: 28px;
+  --font-size-small: 18px;
+  --max-width: 800px;
+  --padding: 1rem;
+  --margin: 1rem;
+  --btn-bg: var(--accent);
+  --btn-fg: #002950;
+  --btn-radius: 6px;
+  --btn-padding: 0.5rem 1rem;
+  --input-border: #474747;
+  --input-focus: var(--accent);
+  --header-bg: #202020;
+  --footer-bg: #202020;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+footer {
+  background: var(--footer-bg);
+  margin-top: auto;
+  font-size: var(--font-size-small);
+  color: var(--muted);
+}
+
+main {
+  flex: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--padding);
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+nav a {
+  text-decoration: none;
+  margin: 0vh;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  font-size: var(--font-size-base);
+}
+
+nav a:hover {
+  opacity: 0.9;
+}
+
+.progress {
+  margin: var(--margin) 0;
+  font-weight: bold;
+}
+
+.feedback.correct {
+  color: var(--success);
+}
+
+.feedback.incorrect {
+  color: var(--error);
+}
+
+form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+input[type="text"], input:not([type]) {
+  padding: 0.5rem;
+  color: var(--fg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: var(--font-size-base);
+  background-color: #1f1f1f;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 3px var(--input-focus);
+}
+
+button {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  width: 100%;
+  background: var(--header-bg);
+  padding: 2rem 2rem;
+  box-sizing: border-box;
+}
+
+#feedback {
+  font-weight: 600;
+}
+
+#quiz-form {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+#quiz-form input[type="text"] {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+#quiz-form button {
+  flex-shrink: 0;
+}
+
+#quiz-form #feedback {
+  min-width: 200px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-grow: 1;
+}
